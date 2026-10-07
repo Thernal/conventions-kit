@@ -1,0 +1,24 @@
+# What an application takes from conventions-kit, and how. Read by `skillctl.sh kit …`
+# (the skill-manager skill in github.com/Thernal/knowledge), which parses it with
+# sed and awk — so keep to this shape: `key: value` scalars, `key:` followed by
+# `  - item` lines, `#` comments. No nesting, no quoting, no inline lists.
+
+name: conventions-kit
+
+# No code: an app's Detekt rules come from build-kit, whose detekt-rules are synced from this
+# repository's build-logic (scripts/sync-kits.py). The kit ships the rules as instructions.
+
+# Installed into the application's skills directory.
+skill:
+  - skills/conventions
+  - skills/conventions-review
+
+# Never copied. A change here is announced on update and read in place.
+docs:
+  - README.md
+  - docs
+
+# What the application is expected to provide.
+requires:
+  - kit build-kit — its Detekt setup runs the custom rules (layers, private previews, block bodies, one constructor parameter per line, safe indexing) the conventions name
+  - agents the app's AGENTS.md says, in three lines, that its Kotlin and Compose code follows the `conventions` skill, that a review against the rules is the `conventions-review` skill, and that a rule is changed in conventions-kit, never in the app's copy

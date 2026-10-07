@@ -1,0 +1,20 @@
+# Only what build-logic itself is built with. A kit's own catalog holds these and everything its
+# modules use; `scripts/sync-kits.sh --check` reports a kit missing an alias the synced build logic reads.
+[versions]
+kotlin = "2.4.10"
+jvm = "17"
+agp = "9.2.1"
+detekt = "2.0.0-alpha.2"
+junit4 = "4.13.2"
+
+[libraries]
+android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+compose-compiler-gradle-plugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+detekt-gradle-plugin = { module = "dev.detekt:detekt-gradle-plugin", version.ref = "detekt" }
+detekt-api = { module = "dev.detekt:detekt-api", version.ref = "detekt" }
+detekt-test = { module = "dev.detekt:detekt-test", version.ref = "detekt" }
+junit4 = { module = "junit:junit", version.ref = "junit4" }
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
