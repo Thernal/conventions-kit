@@ -15,7 +15,7 @@ one pass for a team.
 | [`docs/README.md`](docs/README.md) | the rules, one file each, and how a rule is added or changed |
 | [`skills/conventions`](skills/conventions/SKILL.md) | the rules for an agent writing code in a project on the kits |
 | [`skills/conventions-review`](skills/conventions-review/SKILL.md) | reviewing a diff, a module or a kit against them |
-| [`skills/design-system`](skills/design-system/SKILL.md) | building or growing an app's `designsystem/` — the two modes and the shared steps |
+| [`skills/design-system`](skills/design-system/SKILL.md) | building or growing an app's `core/designsystem/` — the two modes and the shared steps |
 
 ## What is here
 

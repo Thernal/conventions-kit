@@ -31,7 +31,7 @@ grep -rn --include=*.kt -E "interface \w+(Wiring|Bindings)\b" .                 
 grep -rn --include=*.kt -E "^(private )?const val" .                               # constants: where in the file?
 grep -rn -E '=\s*"[^"]*\+"' gradle/libs.versions.toml                               # dynamic versions
 grep -rn --include=*Test.kt -A1 "@Test" . | grep "fun [a-z]"                         # test names not in backticks
-grep -rn --include='*.kt' "androidx.compose.material" designsystem/ features/        # no Material in an app (design-system rule 2)
+grep -rn --include='*.kt' "androidx.compose.material" core/designsystem/ features/        # no Material in an app (design-system rule 2)
 ```
 
 and count top-level declarations per file (more than one non-private one, outside a sealed

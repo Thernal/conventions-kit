@@ -7,11 +7,13 @@ pass — and how the design is read is the `design-system` skill.
 
 ## Rule
 
-1. **Two modules, one direction.** `designsystem/foundation` holds the tokens and the theme (colours,
-   type, spacing, rounding, motion, the theme provider); it draws nothing. `designsystem/components`
+1. **Two modules, one direction.** `core/designsystem/foundation` holds the tokens and the theme (colours,
+   type, spacing, rounding, motion, the theme provider); it draws nothing. `core/designsystem/components`
    holds every `Ds…` component and the modifiers they share (`pressable`, borders).
-   `components` depends on `foundation`; neither depends on a feature, on `core` or on arch-kit. The
-   design system is a leaf.
+   `components` depends on `foundation`; neither depends on a feature or on another `core` module (arch-kit,
+   navigation, …). The design system is a leaf. It sits in `core/designsystem/`, with the app-wide modules, and
+   the kit code that styles itself through it installs beside it as `core/designsystem/<kit>` (overlay-kit:
+   `core/designsystem/overlay`); packages follow the module path, `<app>.core.designsystem.foundation`.
 2. **No Material.** The design system and the features import nothing from `androidx.compose.material*`.
    A behaviour Material has and the design needs (pull to refresh, a top bar's scroll state) is copied
    into `components` and rewritten on tokens, under a header naming the source file, its version, its
@@ -285,5 +287,5 @@ imports no Material and takes its icons as per-icon drawables, which rule 8 does
 
 ## Checked by
 
-Review (`conventions-review`). Mechanical: `grep -rn "androidx.compose.material" designsystem/ features/`
+Review (`conventions-review`). Mechanical: `grep -rn "androidx.compose.material" core/designsystem/ features/`
 finds a rule 2 breach; a Material artifact in a design-system module's build file is the same finding.

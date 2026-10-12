@@ -2,7 +2,7 @@
 
 One developer owns the app. The design system is as large as the screens written so far; every screen
 extends it first and is written on top of it. The extension and the screen are one piece of work, kept
-separable in the diff (the design system under `designsystem/`, the screen under `features/`).
+separable in the diff (the design system under `core/designsystem/`, the screen under `features/`).
 
 ## Per screen
 

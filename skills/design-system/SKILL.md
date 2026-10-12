@@ -1,6 +1,6 @@
 ---
 name: design-system
-description: Builds and grows the design system (`designsystem/foundation` and `designsystem/components`) of a Compose Multiplatform app on the Thernal kits. Reads the design (a design-kit prototype, Figma, or the developer's description), decides for every element whether it is an existing component, a new atom or molecule, or a feature's own component, adds only the tokens and components a screen needs, and checks the result against the design-system rules. Two modes, recorded in .agents/workspace.md — `grow` (extend the design system screen by screen, for one developer) and `upfront` (build the product-neutral set in one pass, for a team). Use whenever a screen, a Ds component, a token or the theme is about to be written in such a project — "extend the design system", "add a Ds component", "build the foundation", "DS qur", "DS-i genişləndir", "bu ekran üçün komponent lazımdır". Not for a feature's own components (conventions), overlays (overlay-kit) or HTML prototypes (design-kit).
+description: Builds and grows the design system (`core/designsystem/foundation` and `core/designsystem/components`) of a Compose Multiplatform app on the Thernal kits. Reads the design (a design-kit prototype, Figma, or the developer's description), decides for every element whether it is an existing component, a new atom or molecule, or a feature's own component, adds only the tokens and components a screen needs, and checks the result against the design-system rules. Two modes, recorded in .agents/workspace.md — `grow` (extend the design system screen by screen, for one developer) and `upfront` (build the product-neutral set in one pass, for a team). Use whenever a screen, a Ds component, a token or the theme is about to be written in such a project — "extend the design system", "add a Ds component", "build the foundation", "DS qur", "DS-i genişləndir", "bu ekran üçün komponent lazımdır". Not for a feature's own components (conventions), overlays (overlay-kit) or HTML prototypes (design-kit).
 ---
 
 # Design system
@@ -23,7 +23,7 @@ Read `.agents/workspace.md`. The row this skill owns:
 | Design system mode | `grow` or `upfront` | `grow`: the design system starts as small as the first screen and is extended by every screen, in the change that needs it — one developer owns the app. `upfront`: the design's product-neutral set is built in one pass before the screens, so developers working in parallel meet the same atoms — a team. |
 
 If the row is absent, look before asking: `git shortlog -sn --all | head` (how many people commit),
-the remote (a team's GitLab or a personal one), and what already exists in `designsystem/`. Then ask
+the remote (a team's GitLab or a personal one), and what already exists in `core/designsystem/`. Then ask
 once, with the recommendation — one author → `grow`, several → `upfront` — and write the row. The mode
 can change later; edit the row, nothing else moves.
 
@@ -46,11 +46,11 @@ In this order, and say which one you used when you report:
 ## 3. Shared steps
 
 **3.1 Inventory.** What exists is the code, not a document: `Ds*` composables under
-`designsystem/components`, and the tokens in `designsystem/foundation`.
+`core/designsystem/components`, and the tokens in `core/designsystem/foundation`.
 
 ```sh
-grep -rhoE "^(internal )?fun Ds[A-Za-z]+" designsystem/components --include='*.kt' | sed 's/.*fun //' | sort -u
-find designsystem/foundation/src -name '*.kt' | sort
+grep -rhoE "^(internal )?fun Ds[A-Za-z]+" core/designsystem/components --include='*.kt' | sed 's/.*fun //' | sort -u
+find core/designsystem/foundation/src -name '*.kt' | sort
 ```
 
 **3.2 Classify every element of the screen or spec sheet**, one decision each:
@@ -59,8 +59,8 @@ find designsystem/foundation/src -name '*.kt' | sort
 |---|---|
 | exists in the inventory with the variant it needs | use it |
 | exists, needs a variant, size or tone it lacks | extend that component — never a sibling beside it |
-| a single primitive, no product meaning (a button, a chip, a switch) | new **atom** in `designsystem/components` |
-| atoms composed, no product meaning (a labelled field, a list row, a banner) | new **molecule** in `designsystem/components` |
+| a single primitive, no product meaning (a button, a chip, a switch) | new **atom** in `core/designsystem/components` |
+| atoms composed, no product meaning (a labelled field, a list row, a banner) | new **molecule** in `core/designsystem/components` |
 | carries product vocabulary (an offer card, a booking row) | the **feature's** component; other features get it through the feature's `api` render contract ([components](../conventions/references/components.md) rule 8) — never the design system |
 | a dialog, bottom sheet, dropdown, tooltip, snackbar, showcase | **overlay-kit**: the app maps its tokens in its overlay styles file; nothing is built here |
 
@@ -81,7 +81,7 @@ it is needed), tokens only, a `String` or a slot for text, icons by the library'
 `@DsPreview` for every variant and state. One component, compile and preview, then the next.
 
 **3.5 Check** before reporting: the project's build and Detekt (the Verification row of
-`.agents/workspace.md`), `grep -rn "androidx.compose.material" designsystem/ features/` finds nothing,
+`.agents/workspace.md`), `grep -rn "androidx.compose.material" core/designsystem/ features/` finds nothing,
 and the `conventions-review` skill over the diff.
 
 **3.6 Report** in a few lines, by category, each with the screen or spec sheet that needed it:

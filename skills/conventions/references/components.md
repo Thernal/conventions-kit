@@ -2,7 +2,7 @@
 
 **Decided:** 2026-10-07
 
-This file is for a feature's components. A design-system component (`Ds…`, in `designsystem/`) follows
+This file is for a feature's components. A design-system component (`Ds…`, in `core/designsystem/`) follows
 [design-system](design-system.md): `State<T>` only for values that change often, plain for the rest.
 
 ## Rule

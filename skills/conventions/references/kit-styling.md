@@ -10,7 +10,7 @@
    defaults, read from a theme local (`OverlayTheme.styles`). Nothing visual is hard-coded in `impl` —
    a value only `impl` knows is a look no app can change.
 3. **The app maps its design system once**, in one file of its own design-system module
-   (`designsystem/…/overlay/AppOverlayStyles.kt`), and installs it at the root inside its theme:
+   (`core/designsystem/…/overlay/AppOverlayStyles.kt`), and installs it at the root inside its theme:
    `AppTheme { OverlayTheme(styles = appOverlayStyles()) { … } }`. A one-off look is a `style =` at the
    call site.
 4. **Kit code is never edited to restyle.** The defaults are fallbacks for previews, tests and the first
