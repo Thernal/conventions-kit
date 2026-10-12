@@ -4,7 +4,9 @@ The rules every Thernal kit and every app built on the kits follows — package 
 names, presentation structure, components, previews, data and domain, navigation, DI modules,
 strings, Compose performance, comments, tests, documentation, kit styling, dependencies — each with
 its reason, an example and how it is checked. They reach agents as two skills; the few that a tool can
-check are Detekt rules, kept here and synced into every kit.
+check are Detekt rules, kept here and synced into every kit. A third skill, `design-system`, is the
+procedure for building an app's design system by those rules — screen by screen for one developer, in
+one pass for a team.
 
 ## Documentation
 
@@ -13,6 +15,7 @@ check are Detekt rules, kept here and synced into every kit.
 | [`docs/README.md`](docs/README.md) | the rules, one file each, and how a rule is added or changed |
 | [`skills/conventions`](skills/conventions/SKILL.md) | the rules for an agent writing code in a project on the kits |
 | [`skills/conventions-review`](skills/conventions-review/SKILL.md) | reviewing a diff, a module or a kit against them |
+| [`skills/design-system`](skills/design-system/SKILL.md) | building or growing an app's `designsystem/` — the two modes and the shared steps |
 
 ## What is here
 
@@ -20,6 +23,7 @@ check are Detekt rules, kept here and synced into every kit.
 |---|---|
 | `skills/conventions/references/` | the rules — the one source; `docs/README.md` indexes them |
 | `skills/conventions-review/` | the review procedure |
+| `skills/design-system/` | the design-system procedure and its two modes (`references/grow.md`, `references/upfront.md`) |
 | `build-logic/detekt-rules/` | the custom Detekt rules and their tests — the master copy |
 | `build-logic/convention/` | the trimmed convention plugins every kit builds with — the master copy |
 | `scripts/sync-kits.py` | renders `build-logic/` into every sibling kit, renamed; `--check` reports drift |
@@ -32,7 +36,7 @@ check are Detekt rules, kept here and synced into every kit.
 skillctl.sh kit install conventions-kit
 ```
 
-copies the two skills into the app's skills directory and records them in `kits.lock`; `kit update`
+copies the three skills into the app's skills directory and records them in `kits.lock`; `kit update`
 brings later rule changes. Nothing else is copied: the app's Detekt rules come from build-kit. Add three
 lines to the app's `AGENTS.md` (`kit.yml` → `requires`):
 
@@ -42,8 +46,9 @@ lines to the app's `AGENTS.md` (`kit.yml` → `requires`):
 - A rule is changed in conventions-kit (skill-manager `report`), never in this repository's copy.
 ```
 
-Without skill-manager: copy `skills/conventions` and `skills/conventions-review` into the app's
-skills directory.
+Without skill-manager: copy `skills/conventions`, `skills/conventions-review` and `skills/design-system`
+into the app's skills directory. The `design-system` skill writes one row, `Design system mode`, into the
+app's `.agents/workspace.md` on first use.
 
 ## Build logic: one master, synced copies
 

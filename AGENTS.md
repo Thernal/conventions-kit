@@ -36,6 +36,7 @@ A change here reaches every kit and every app, so it is made deliberately.
 | `docs/README.md` | the index of the rules and how one is written | a rule is added, renamed or its check changes |
 | `skills/conventions` | the rules for an agent; `references/` are the rules | a rule changes |
 | `skills/conventions-review` | how a review against the rules is done | the procedure or the mechanical checks change |
+| `skills/design-system` | how an app's design system is built or grown, in its two modes | the design-system rule changes, or a step of either mode does |
 | `kit.yml` | what an app takes and must provide | a skill or a requirement changes |
 
 The skills' frontmatter has to load in Claude Code and in Codex alike: a `description` of at most 1024
