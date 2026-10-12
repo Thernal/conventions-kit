@@ -33,6 +33,7 @@ These hold for every change; the rest is in the references.
 | a new module, package or file; moving code | [package-naming](references/package-naming.md), [files-and-names](references/files-and-names.md) |
 | a screen: View, Content, ViewModel, contract, models, mappers | [presentation-structure](references/presentation-structure.md) |
 | a component (state + composable), its parameters and callbacks; a render contract across features | [components](references/components.md) |
+| a design-system component, token or modifier (`designsystem/`, `Ds…`) | [design-system](references/design-system.md) |
 | previews | [previews](references/previews.md) |
 | DTOs, domain models, data sources, repositories, use cases | [data-and-domain](references/data-and-domain.md) |
 | routes, a feature's graph, sheets and dialogs as destinations | [navigation](references/navigation.md) |

@@ -2,6 +2,9 @@
 
 **Decided:** 2026-10-07
 
+This file is for a feature's components. A design-system component (`Ds…`, in `designsystem/`) follows
+[design-system](design-system.md): `State<T>` only for values that change often, plain for the rest.
+
 ## Rule
 
 1. **A component is its state and its composable, in one file named after the composable.**
