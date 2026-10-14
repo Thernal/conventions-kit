@@ -72,8 +72,8 @@ find core/designsystem/foundation/src -name '*.kt' | sort
 - Light and dark together. The values are the design's resolved values, not recomputed by hand —
   when the design is a design-kit prototype, resolve `tokens.css` in a browser and compare (DropNote's
   `scripts/golden-tokens/` does this; it is that project's code, not part of this kit).
-- The KDoc of a token or a component names the screen or component that needed it. No token is added to
-  complete a ramp or a scale.
+- A token or a component's KDoc never names who needed it (the commit does); a token whose name says
+  it all has none. No token is added to complete a ramp or a scale.
 
 **3.4 Write the component** by the rule: parameter order, `State<T>` only for a value that changes
 often, plain for the rest, `modifier` on the root, no Material (copy the behaviour with a header when

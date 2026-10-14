@@ -19,11 +19,16 @@ This file is for a feature's components. A design-system component (`Ds…`, in 
    one, then the optional rest. Inside each group: state, config (set once, rarely changes),
    callbacks, composable slots — a slot last, so it stays a trailing lambda.
 4. **Frequently changing inputs are `State<T>`**, read as late as possible; a static value is
-   wrapped with `stateOf(x)`.
+   wrapped with `rememberUpdatedState(x)`. A part of a screen that reads a changing value — a
+   footer's `enabled` — is its own component with its own `State<…>`, so only it recomposes
+   ([compose-performance](compose-performance.md) rule 5).
 5. **Callbacks are the component's own event, as a verb**: `onSubmit`, `onBack`, `onChange` — never
    the parent's use case, never `onNav…`. `on<Thing>Click` only when the component has several
    clickable things and the thing is the meaning (`onAvatarClick`).
-6. **A component's own actions stay in its file**; only a screen has an `Actions` contract.
+6. **Two or more callbacks are one `<Component>Actions`** — an `@Immutable data class` in the
+   component's file (`CodeInputActions(onChange, onSubmit)`). The screen builds it in a mapper from
+   `onIntent` and its own `Actions`, remembered (`onIntent.toCodeInputActions()`). One callback stays a
+   parameter.
 7. **Composables in an `impl` are `internal`**, module-shared ones included; only a render adapter
    is public.
 8. **Across features, through a render contract**: `XRenderer` + `LocalXRenderer` + facade in `api`,

@@ -10,6 +10,10 @@
    - `<X>ProvidersModule` — `@Provides` functions;
    - `<X>BindingsModule` — `@Binds` from an interface to its implementation.
 2. A module binds one kind of thing; a small capability may have only one of them.
+3. **A feature's ViewModels are bound in its `wiring`** with `@Provides @IntoMap @ViewModelKey(X::class)`
+   (an assisted one: `@ManualViewModelAssistedFactoryKey`), and the class in `impl` carries no Metro
+   annotation. The app depends on `wiring` only, so `impl` is not on the app graph's classpath and
+   Metro never sees a `@ContributesIntoMap` there: the build passes and the map lacks the ViewModel.
 
 ## Why
 

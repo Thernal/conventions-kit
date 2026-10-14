@@ -19,8 +19,9 @@ presentation/
     <Screen>ViewModel.kt
     contract/              <Screen>State, <Screen>Intent, <Screen>Effect (only if needed), <Screen>Actions
     model/                 screen-level UI models
-    mapper/                State<ScreenState>.to<Name>State(), domain → UI model for this screen
-    components/<Name>.kt   a component: its state + its composable        → [components](components.md)
+    mapper/                <Screen>ComponentStateMappers.kt, <Screen>ComponentActionsMappers.kt;
+                           domain → UI model for this screen
+    components/<Name>.kt   a component: its state, its actions, its composable → [components](components.md)
     components/<name>/     a large one: <Name>.kt + components/
     preview/               this screen's PreviewParameterProviders, if any
 ```

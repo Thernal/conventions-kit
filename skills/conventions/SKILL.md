@@ -23,7 +23,12 @@ These hold for every change; the rest is in the references.
   `…ViewModelsModule` / `…ProvidersModule` / `…BindingsModule`; screens are `…View`, never `…Screen`.
 - **File-private constants** at the bottom of the file — in a composable file, the component's
   before the component, the preview's between component and preview.
-- **No magic values; comments say why, not what.** → [comments](references/comments.md)
+- **No magic values.** Comments say why, not what; self-explanatory code and call sites get none;
+  one or two lines. → [comments](references/comments.md)
+- **Previews take their states from a `PreviewParameterProvider`** in `preview/`; two or more
+  callbacks of a component are one `<Component>Actions`; a screen's mappers are grouped in
+  `<Screen>ComponentStateMappers.kt` / `…ActionsMappers.kt`. → [previews](references/previews.md),
+  [components](references/components.md)
 - **Exact catalog versions** — no `+`. → [dependencies](references/dependencies.md)
 
 ## Which rule for which task

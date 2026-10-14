@@ -9,6 +9,9 @@
 4. **No `Modifier.composed`**; write `@Composable` modifier functions.
 5. **Derived values**: a `derivedStateOf` field on the state, or `select` at the call site; never
    unwrap `.value` high up and pass raw values down.
+6. **A `State` is read in the smallest composable that needs it.** `Content` reads none: a value that
+   only the footer uses goes to a footer component through a mapper
+   (`state.toSubmitFooterState()`), or the whole screen recomposes when it changes.
 
 ## Checked by
 

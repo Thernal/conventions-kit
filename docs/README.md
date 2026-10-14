@@ -18,7 +18,7 @@ so that the `conventions` skill ships them as they are; this page is their index
 | [DI modules — `ViewModelsModule`, `ProvidersModule`, `BindingsModule`](../skills/conventions/references/di-modules.md) | review |
 | [Strings — `UiString`, keys, where they live](../skills/conventions/references/strings.md) | review |
 | [Compose performance — immutable collections, stability, phases](../skills/conventions/references/compose-performance.md) | stability report, review |
-| [Comments — why, not what](../skills/conventions/references/comments.md) | review |
+| [Comments — why, not what; none on self-explanatory code; short](../skills/conventions/references/comments.md) | review |
 | [Tests — backtick names, Mokkery, fakes with behaviour, what is tested](../skills/conventions/references/tests.md) | review |
 | [Documentation — a README per `api` module](../skills/conventions/references/documentation.md) | the kit's done-list, review |
 | [Formatting — editorconfig and the custom Detekt rules](../skills/conventions/references/formatting.md) | ktlint, Detekt |

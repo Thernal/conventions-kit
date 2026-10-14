@@ -13,8 +13,11 @@
    `PreviewWrapper` is in Compose Multiplatform 1.12's `commonMain`.
 5. **Preview-only values** (`"text".ui()`) and constants sit after the component, before the
    previews — see [files-and-names](files-and-names.md) rule 7.
-6. **No preview data shared between screens**; `PreviewParameterProvider`s live in `preview/` of the
-   module or the screen ([presentation-structure](presentation-structure.md)).
+6. **States come from a `PreviewParameterProvider`.** A component or screen shown in more than one
+   state has one `Preview(@PreviewParameter(…) state: …)` fed by a provider, not a preview function
+   and a `private val Sample…` per state. Providers live in `preview/` of the screen or the module
+   ([presentation-structure](presentation-structure.md)); none is shared between screens.
+7. **A `State<T>` parameter gets `rememberUpdatedState(state)`** in a preview.
 
 ## Example
 
@@ -22,17 +25,20 @@
 @Composable
 internal fun LoginUsernameInput(
     state: State<LoginUsernameInputState>,
-    onChange: (String) -> Unit,
+    actions: LoginUsernameInputActions,
     modifier: Modifier = Modifier,
 ) { … }
 
-private val SampleState = LoginUsernameInputState(value = "ada")
-
 @DsPreview
 @Composable
-private fun Preview() {
-    LoginUsernameInput(state = stateOf(SampleState), onChange = {})
+private fun Preview(@PreviewParameter(LoginUsernameInputStatePreviewProvider::class) state: LoginUsernameInputState) {
+    LoginUsernameInput(state = rememberUpdatedState(state), actions = PreviewActions)
 }
+
+// view/login/preview/LoginUsernameInputStatePreviewProvider.kt
+internal class LoginUsernameInputStatePreviewProvider : CollectionPreviewParameterProvider<LoginUsernameInputState>(
+    listOf(LoginUsernameInputState(value = ""), LoginUsernameInputState(value = "ada")),
+)
 ```
 
 ## Checked by

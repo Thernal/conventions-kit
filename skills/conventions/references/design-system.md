@@ -37,9 +37,9 @@ pass — and how the design is read is the `design-system` skill.
    changing parameter is a finding, and so is a `State<T>` for one that rarely changes. A constant for
    a `State<T>` parameter is `rememberUpdatedState(x)`.
 6. **Looks come from tokens.** No literal colour, `dp`, `sp`, alpha or duration in a component: read
-   `DsTheme.*`. A value a screen needs and foundation lacks is added to foundation in the same change,
-   and the KDoc names the screen or component that needed it. A value is never added to complete a
-   scale.
+   `DsTheme.*`. A value a screen needs and foundation lacks is added to foundation in the same change;
+   the commit says which screen needed it, the KDoc never does ([comments](comments.md) rule 3). A
+   value is never added to complete a scale.
 7. **Text is a `String` or a slot.** A component never takes a `UiString`; a feature that has one
    resolves it at the call site.
 8. **Icons are values, from a library.** A component takes an `ImageVector` (or a `Painter`), never an
