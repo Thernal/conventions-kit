@@ -25,14 +25,14 @@
 @Composable
 internal fun LoginUsernameInput(
     state: State<LoginUsernameInputState>,
-    actions: LoginUsernameInputActions,
+    callbacks: LoginUsernameInputCallbacks,
     modifier: Modifier = Modifier,
 ) { … }
 
 @DsPreview
 @Composable
 private fun Preview(@PreviewParameter(LoginUsernameInputStatePreviewProvider::class) state: LoginUsernameInputState) {
-    LoginUsernameInput(state = rememberUpdatedState(state), actions = PreviewActions)
+    LoginUsernameInput(state = rememberUpdatedState(state), callbacks = PreviewCallbacks)
 }
 
 // view/login/preview/LoginUsernameInputStatePreviewProvider.kt

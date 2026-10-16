@@ -25,10 +25,11 @@ This file is for a feature's components. A design-system component (`Ds…`, in 
 5. **Callbacks are the component's own event, as a verb**: `onSubmit`, `onBack`, `onChange` — never
    the parent's use case, never `onNav…`. `on<Thing>Click` only when the component has several
    clickable things and the thing is the meaning (`onAvatarClick`).
-6. **Two or more callbacks are one `<Component>Actions`** — an `@Immutable data class` in the
-   component's file (`CodeInputActions(onChange, onSubmit)`). The screen builds it in a mapper from
-   `onIntent` and its own `Actions`, remembered (`onIntent.toCodeInputActions()`). One callback stays a
-   parameter.
+6. **Two or more callbacks are one `<Component>Callbacks`** — an `@Immutable data class` in the
+   component's file (`CodeInputCallbacks(onChange, onSubmit)`), passed as `callbacks`. The screen builds
+   it in a mapper from `onIntent` and its own `Callbacks`, remembered (`onIntent.toCodeInputCallbacks()`).
+   One callback stays a parameter. Never `…Actions`: an action is the logic's word
+   ([presentation-structure](presentation-structure.md) rule 2).
 7. **Composables in an `impl` are `internal`**, module-shared ones included; only a render adapter
    is public.
 8. **Across features, through a render contract**: `XRenderer` + `LocalXRenderer` + facade in `api`,

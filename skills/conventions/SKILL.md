@@ -27,9 +27,11 @@ These hold for every change; the rest is in the references.
   a rule code or a "because". A KDoc on an enum entry, an intent, an effect or a state field, or one that
   says who uses the declaration, is deleted. → [comments](references/comments.md)
 - **Previews take their states from a `PreviewParameterProvider`** in `preview/`; two or more
-  callbacks of a component are one `<Component>Actions`; a screen's mappers are grouped in
-  `<Screen>ComponentStateMappers.kt` / `…ActionsMappers.kt`. → [previews](references/previews.md),
-  [components](references/components.md)
+  callbacks of a component are one `<Component>Callbacks`; a screen's mappers are grouped in
+  `<Screen>StateMappers.kt` / `<Screen>CallbacksMappers.kt`. A logic's `<Screen>Action` sits in the
+  `contract/` with State, Intent and Effect; "Actions" names nothing in the UI.
+  → [previews](references/previews.md), [components](references/components.md),
+  [presentation structure](references/presentation-structure.md)
 - **Exact catalog versions** — no `+`. → [dependencies](references/dependencies.md)
 
 ## Which rule for which task
