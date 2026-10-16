@@ -5,10 +5,10 @@
 ## Rule
 
 1. **One top-level declaration per file**, the file named after it. Types that cannot be used apart
-   from their parent may share its file — nested response DTOs, a component's state and actions
+   from their parent may share its file — nested response DTOs, a component's state and callbacks
    classes — and a sealed hierarchy stays together. A screen's UI mappers are grouped by what they
-   produce: `<Screen>ComponentStateMappers.kt` holds every `State<ScreenState>.to<Component>State()`,
-   `<Screen>ComponentActionsMappers.kt` every `to<Component>Actions()`.
+   produce: `<Screen>StateMappers.kt` holds every `State<ScreenState>.to<Component>State()`,
+   `<Screen>CallbacksMappers.kt` every `to<Component>Callbacks()`.
 2. **One non-preview composable per file**; its previews stay in the same file, after it.
 3. **The line limit splits files too.** A composable that outgrows its file becomes a folder:
    `<name>/<Name>.kt` and `<name>/components/` for its parts.
