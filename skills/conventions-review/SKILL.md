@@ -34,6 +34,15 @@ grep -rn --include=*Test.kt -A1 "@Test" . | grep "fun [a-z]"                    
 grep -rn --include='*.kt' "androidx.compose.material" core/designsystem/ features/        # no Material in an app (design-system rule 2)
 ```
 
+and list every comment of the scope for a verdict — the ones that restate a name, say who uses a
+declaration or describe another class are findings (comments, rules 2 and 7):
+
+```sh
+git diff main...HEAD -U0 -- '*.kt' '*.kts' | grep -E '^\+\s*(/\*\*|\*|//)'                 # every comment line a diff adds
+grep -rn --include='*.kt' -A1 -E '^\s*/\*\*.*\*/\s*$' <path> | grep -E 'object |enum |data class |val |^\S+-\s+[A-Z_]+[,(]'
+                                                                                            # one-line KDocs above members: the usual suspects
+```
+
 and count top-level declarations per file (more than one non-private one, outside a sealed
 hierarchy or a type with its factory/`remember`/`Local`, is a finding). In a kit next to
 conventions-kit, its `scripts/check-namespaces.py <kit>` and `scripts/sync-kits.py --check <kit>`
@@ -41,7 +50,8 @@ cover packages, build-logic drift and the catalog.
 
 ## 4. Read the code, rule by rule
 
-For each file in scope: package and file shape, names, constants, comments; then by kind — a
+For each file in scope: package and file shape, names, constants, comments (each one against the
+test in comments rule 7); then by kind — a
 screen against presentation-structure, a component against components and previews, data and
 domain types against data-and-domain, routes and graphs against navigation, binding containers
 against di-modules, tests against tests, UI in a kit against kit-styling. Measure complexity
@@ -54,6 +64,7 @@ One line per finding, most important first, grouped by rule:
 ```
 package-naming · media/ui/src/…/crop/ImageCropScreen.kt:1 · package repeats the layer · drop `.presentation`
 files-and-names · …/SessionManager.kt:12 · six declarations in one file · one file each (Tokens.kt, TokenStore.kt, …)
+comments · …/OnboardingEffect.kt:5 · KDoc turns the name into a sentence and describes another class · delete
 ```
 
 Then a short summary: findings per rule, and what the fix would break for code that uses it (a
