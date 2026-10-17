@@ -35,7 +35,9 @@ This file is for a feature's components. A design-system component (`Ds…`, in 
    is not counted on: the scope that reads a state re-runs up to every call inside it.
 5. **Callbacks are the component's own event, as a verb**: `onSubmit`, `onBack`, `onChange` — never
    the parent's use case, never `onNav…`. `on<Thing>Click` only when the component has several
-   clickable things and the thing is the meaning (`onAvatarClick`).
+   clickable things and the thing is the meaning (`onAvatarClick`). **A callback takes at most one
+   parameter:** two or more values travel as one data class in the component's file
+   (`onSubmit: (LoginCredentials) -> Unit`, never `onSubmit: (String, String) -> Unit`).
 6. **Two or more callbacks are one `<Component>Callbacks`** — an `@Immutable data class` in the
    component's file (`CodeInputCallbacks(onChange, onSubmit)`), passed as `callbacks`. The screen builds
    it in a `@Composable` mapper from `onIntent` and its own `Callbacks` (`onIntent.toCodeInputCallbacks()`).

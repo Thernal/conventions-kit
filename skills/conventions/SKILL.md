@@ -22,7 +22,8 @@ These hold for every change; the rest is in the references.
 - **Names:** the one implementation is `<Interface>Impl`, never `Default…`; DI containers are
   `…ViewModelsModule` / `…ProvidersModule` / `…BindingsModule` (a ViewModel is never bound in a
   `ProvidersModule`); screens are `…View`, never `…Screen`; a route an `api` publishes is
-  `<Feature>SharedRoute`, one inside an `impl` is `<Feature>Route`.
+  `<Feature>SharedRoute`, one inside an `impl` is `<Feature>Route`; a dependency is named after its type in
+  full (`authRepository: AuthRepository`), never `repository`.
 - **Modules:** `features/shared`, `features/client`, `features/store` when the product has several apps,
   `features/<name>` with no group when it has one; an `impl` may depend on any `api`,
   an `api` never on another feature's `api`; an app holds no screen (a `dashboard` feature per app) and

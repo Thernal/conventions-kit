@@ -25,6 +25,10 @@
    - In a composable file, the component's constants come **before** the component; a preview's come
      **after** the component and before the preview. Component and preview never interleave.
 8. **Composables are PascalCase nouns**; design-system components carry the `Ds` prefix.
+9. **A dependency is named after its type, in full:** `authRepository: AuthRepository`,
+   `keyValueStore: KeyValueStore`, `authSharedRepository: AuthSharedRepository` — never `repository`,
+   `source`, `store` or a shortening (`posts: PostRepository`). A class may take several of them, and the name
+   says which; a test's mock or fake of one is named the same way.
 
 ## Why
 

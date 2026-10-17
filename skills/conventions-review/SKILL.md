@@ -37,6 +37,8 @@ grep -rln --include='*.kt' -E "compose.runtime.(Immutable|Stable)|collections.im
                                                                                             # pure domain models (data-and-domain rule 9)
 grep -rn --include='*Content.kt' -E "derivedStateOf|state\.value" features/                  # a Content reads no state (components rule 4)
 grep -rn --include='*.kt' -E "remember(\([^)]*\))? \{ \{" features/                        # no callback wrapped in remember (components rule 6)
+grep -rn --include='*.kt' -E "on[A-Z]\w*: \([^)]*,[^)]*\) ->" features/ core/designsystem/  # a callback takes one parameter (components rule 5)
+grep -rn --include='*.kt' -E "\b(repository|source|store)\s*:\s*[A-Z]\w+" features/ apps/          # a dependency named after its type (files-and-names rule 9)
 grep -rln --include='*.kt' -E "class \w+(State|Callbacks)\(" features/ | grep "/model/"      # a component's state sits with its component (components rule 1)
 grep -rn --include='*.kt' -E "(val|var) \w+: (Mutable)?(State)?Flow<" $(find features -type d -path '*/data/repository' -not -path '*/build/*')
                                                                                             # no flow held by a repository (data-and-domain rule 3)
