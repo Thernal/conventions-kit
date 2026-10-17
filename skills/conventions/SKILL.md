@@ -23,7 +23,8 @@ These hold for every change; the rest is in the references.
   `…ViewModelsModule` / `…ProvidersModule` / `…BindingsModule` (a ViewModel is never bound in a
   `ProvidersModule`); screens are `…View`, never `…Screen`; a route an `api` publishes is
   `<Feature>SharedRoute`, one inside an `impl` is `<Feature>Route`.
-- **Modules:** `features/shared`, `features/client`, `features/store`; an `impl` may depend on any `api`,
+- **Modules:** `features/shared`, `features/client`, `features/store` when the product has several apps,
+  `features/<name>` with no group when it has one; an `impl` may depend on any `api`,
   an `api` never on another feature's `api`; an app holds no screen (a `dashboard` feature per app) and
   where a signed-out user goes is auth's guard. → [modules](references/modules.md)
 - **Data:** `data/{model,mapper,source,repository}` in every feature; a remote source is an interface +

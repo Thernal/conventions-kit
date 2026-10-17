@@ -4,10 +4,12 @@
 
 ## Rule
 
-1. **Features are grouped by who uses them:** `features/shared/<name>` for what both apps use,
-   `features/client/<name>` and `features/store/<name>` for one app's own. The group is a path segment, so it
-   is part of the namespace (`<app>.features.shared.auth.impl`, [package-naming](package-naming.md)). A
-   feature one app uses is never under `shared`.
+1. **In a product with several apps, features are grouped by who uses them:** `features/shared/<name>` for
+   what both apps use, `features/client/<name>` and `features/store/<name>` for one app's own. The group is a
+   path segment, so it is part of the namespace (`<app>.features.shared.auth.impl`,
+   [package-naming](package-naming.md)). A feature one app uses is never under `shared`. **A product with one
+   app has no groups:** every feature is `features/<name>` (`<app>.features.auth.impl`); a group is added
+   only when a second app arrives, and then every feature moves into one.
 2. **A feature is `api` / `impl` / `wiring`, plus `testing` when it has a fake** ([tests](tests.md)
    rule 5). A feature with nothing to publish has no `api` — a dashboard is `impl` + `wiring`.
 3. **Dependency direction.** An `impl` may depend on any number of `api` modules — its own, other features',
@@ -20,7 +22,8 @@
    readiness), read through the shared preferences repository. The root composable is one **layer** per
    provider (`ReadyLayer`, `LanguageLayer`, `ThemeLayer`, `OverlayLayer`, `NavigationLayer`), each reading a single
    field of the root state, so one change recomposes one layer. The app's tabs are its own `dashboard` feature
-   (`features/client/dashboard`, `features/store/dashboard`), registered like any other feature's graph.
+   (`features/client/dashboard`, `features/store/dashboard`; `features/dashboard` in a one-app product),
+   registered like any other feature's graph.
 5. **A rule that spans features belongs to the feature that owns the subject.** Where a signed-out user
    goes is auth's: a nav-kit guard over the session, contributed by auth's `wiring`
    ([navigation](navigation.md) rule 6). Splash and the dashboards register their own destinations. No app
@@ -31,7 +34,8 @@
 
 ## Why
 
-- Where a feature lives says who may use it, and the namespace says the same.
+- Where a feature lives says who may use it, and the namespace says the same. With one app every feature is
+  that app's, so a group would say nothing and lengthen every package.
 - `api` → `api` chains turn a contract into a dependency graph; an `impl` seeing any `api` costs nothing
   and keeps features independent of each other's internals.
 - Two apps that each copy the session logic and the tab shell change twice for every rule.
