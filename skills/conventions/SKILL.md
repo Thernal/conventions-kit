@@ -20,7 +20,20 @@ These hold for every change; the rest is in the references.
   Exceptions: a sealed hierarchy, a type unusable apart from its parent, a type with its
   `remember…`/`Local…`/factory. → [files-and-names](references/files-and-names.md)
 - **Names:** the one implementation is `<Interface>Impl`, never `Default…`; DI containers are
-  `…ViewModelsModule` / `…ProvidersModule` / `…BindingsModule`; screens are `…View`, never `…Screen`.
+  `…ViewModelsModule` / `…ProvidersModule` / `…BindingsModule` (a ViewModel is never bound in a
+  `ProvidersModule`); screens are `…View`, never `…Screen`; a route an `api` publishes is
+  `<Feature>SharedRoute`, one inside an `impl` is `<Feature>Route`.
+- **Modules:** `features/shared`, `features/client`, `features/store`; an `impl` may depend on any `api`,
+  an `api` never on another feature's `api`; an app holds no screen (a `dashboard` feature per app) and
+  where a signed-out user goes is auth's guard. → [modules](references/modules.md)
+- **Data:** `data/{model,mapper,source,repository}` in every feature; a remote source is an interface +
+  `…Impl`; a repository another feature needs is `<Feature>SharedRepository` in the `api`; **domain
+  models are pure** (no Compose, no immutable collections, no defaults, no display logic) and the
+  presentation maps them to its own models. → [data-and-domain](references/data-and-domain.md)
+- **Fakes** sit behind the real data layer: `Fake<X>RemoteDataSource` in the feature's `testing` module,
+  dev flavor only. Stubs are Mokkery. → [tests](references/tests.md)
+- **Keyboard:** each inset once; `imePadding()` then `navigationBarsPadding()`; Android `adjustResize`;
+  iOS `OnFocusBehavior.DoNothing`. → [insets](references/insets.md)
 - **File-private constants** at the bottom of the file — in a composable file, the component's
   before the component, the preview's between component and preview.
 - **No magic values.** **No comment is the default**: one stays only for a number, a constraint, a trap,
@@ -39,6 +52,8 @@ These hold for every change; the rest is in the references.
 | Task | Read |
 |---|---|
 | a new module, package or file; moving code | [package-naming](references/package-naming.md), [files-and-names](references/files-and-names.md) |
+| a new feature or app, a dependency between modules, where a rule that spans features lives | [modules](references/modules.md) |
+| a screen with a text field, a bottom bar, a sheet over a keyboard; an app's activity or iOS entry point | [insets](references/insets.md) |
 | a screen: View, Content, ViewModel, contract, models, mappers | [presentation-structure](references/presentation-structure.md) |
 | a component (state + composable), its parameters and callbacks; a render contract across features | [components](references/components.md) |
 | a design-system component, token or modifier (`core/designsystem/`, `Ds…`) | [design-system](references/design-system.md) |

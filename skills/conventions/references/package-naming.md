@@ -7,7 +7,8 @@
 A source file's package is, in this order, with nothing added and nothing repeated:
 
 1. **The package prefix** — `app.namespace` (`io.thernal.archkit`, `com.example.app`).
-2. **The module path below the modules root** — area, capability, role: `features.profile.impl`.
+2. **The module path below the modules root** — area, group, capability, role: `features.shared.profile.impl`
+   (the group is `shared`, `client` or `store`: [modules](modules.md) rule 1).
    The modules root (`app.modules.root`) is never part of it.
 3. **The layer** — `data`, `domain` or `presentation` — only in an `api` or `impl` module, and only
    when the module path does not name the layer already. A module named after its layer

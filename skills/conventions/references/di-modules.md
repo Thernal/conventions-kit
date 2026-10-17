@@ -15,6 +15,15 @@
    annotation. The app depends on `wiring` only, so `impl` is not on the app graph's classpath and
    Metro never sees a `@ContributesIntoMap` there: the build passes and the map lacks the ViewModel.
 
+4. **A ViewModel is never bound in a `ProvidersModule`.** A feature with ViewModels has a
+   `<X>ViewModelsModule`, however small, and keeps graph providers and renderers in `<X>ProvidersModule`.
+5. **Data bindings are split so a fake can replace the source:** `<X>RepositoryProvidersModule` provides the
+   repository from the source, `<X>SourceProvidersModule` provides the `…RemoteDataSource`. A fake in the
+   feature's `testing` module is a container `@ContributesTo(AppScope::class, replaces =
+   [<X>SourceProvidersModule::class])`; the app pulls it in for the dev flavor only ([tests](tests.md)
+   rule 5). A shared repository is bound from the same instance: `@Provides fun shared(repository:
+   <X>Repository): <X>SharedRepository { return repository }`.
+
 ## Why
 
 Where a ViewModel, a factory or an implementation is bound is found from the file name, and a large

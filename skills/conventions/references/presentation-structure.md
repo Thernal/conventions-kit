@@ -24,16 +24,22 @@ presentation/
                            domain → UI model for this screen
     components/<Name>.kt   a component: its state, its callbacks, its composable → [components](components.md)
     components/<name>/     a large one: <Name>.kt + components/
+    form/                  the screen's input validators (`<Name>Validator`), if any
     preview/               this screen's PreviewParameterProviders, if any
 ```
+
+**The tree is closed.** A folder that is not in it (`message/`, `helpers/`, `util/`) is a finding: what it
+holds belongs to one of these places or to the screen's View.
 
 1. **A screen is a package** `view/<screen>/`, lowercase, no separators (`createaccount`).
 2. **The contract is a package**, one file per type. `<Screen>Action` is the `internal` action type of
    an `ActionLogic`, kept with the State, Intent and Effect that `ActionLogic<S, I, A, E>` names.
    `<Screen>Callbacks` is one `@Immutable data class` of the screen's callbacks — navigation, nothing
    that changes state. **Action is the logic's word and Callbacks the UI's**; neither is ever called
-   `Actions`. `<Screen>Effect` exists only when `NavEffect` and `MessageEffect` are not enough, and
-   says why.
+   `Actions`. `<Screen>Effect` carries what the Logic asks the screen to do once:
+   `Navigation(process: Navigator.() -> Unit)` and `Message(text: UiString)`, plus a case of its own when
+   one is needed. Every screen has its own effect type, even when several screens of a feature need the
+   same cases, and its View handles each case inline; no shared "effect handler" file.
 3. **UI models are not contract.** Display models and navigation argument classes go to `model/` —
    the screen's, or the feature's when several screens use them.
 4. **`<Screen>Content` never sees the ViewModel**: `(state, onIntent, callbacks)`; the parameter is
@@ -53,8 +59,13 @@ presentation/
    App-level overlays (overlay-kit) are called through their api.
 8. **No preview data shared between screens.** `PreviewParameterProvider`s, when written, live in
    `preview/` of the module or of the screen.
-9. **Only an intent handler changes state**; a sheet's visibility is state set by an intent, never a
-   local `remember { mutableStateOf(…) }`. No network or database call from a composable.
+9. **Presentation models, not domain types.** A state and a component hold the screen's own models
+   (`ProfileInfo`, `ChatMessage`), mapped from the domain in the Logic; display text is made here
+   ([data-and-domain](data-and-domain.md) rule 9).
+10. **A screen with nothing that changes state** (an about page, a static FAQ) is a `View` and a `Content`,
+    without a ViewModel, Logic or contract.
+11. **Only an intent handler changes state**; a sheet's visibility is state set by an intent, never a
+    local `remember { mutableStateOf(…) }`. No network or database call from a composable.
 
 ## Why
 

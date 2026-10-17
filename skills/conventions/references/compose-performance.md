@@ -3,7 +3,8 @@
 ## Rule
 
 1. **Collections exposed to Compose are `kotlinx.collections.immutable` types.**
-2. **Every presentation model an `api` publishes is `@Immutable` or `@Stable`.**
+2. **Every presentation model an `api` publishes is `@Immutable` or `@Stable`.** Domain models carry neither
+   ([data-and-domain](data-and-domain.md) rule 9): the screen's models are what Compose sees.
 3. **Animated values are read in the draw or layout phase** (`graphicsLayer {}`, `offset {}`), never
    in the composable's body.
 4. **No `Modifier.composed`**; write `@Composable` modifier functions.

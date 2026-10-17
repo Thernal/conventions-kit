@@ -32,6 +32,14 @@ grep -rn --include=*.kt -E "^(private )?const val" .                            
 grep -rn -E '=\s*"[^"]*\+"' gradle/libs.versions.toml                               # dynamic versions
 grep -rn --include=*Test.kt -A1 "@Test" . | grep "fun [a-z]"                         # test names not in backticks
 grep -rn --include='*.kt' "androidx.compose.material" core/designsystem/ features/        # no Material in an app (design-system rule 2)
+grep -rn --include='*.kt' -E "StepRoute|\w+Actions\b" features apps                        # route names, Callbacks not Actions
+grep -rln --include='*.kt' -E "compose.runtime.(Immutable|Stable)|collections.immutable" features/*/*/impl/src/*/kotlin/*/domain features/*/*/*/domain 2>/dev/null
+                                                                                            # pure domain models (data-and-domain rule 9)
+grep -rn --include='*ProvidersModule.kt' "ViewModelKey" features                             # ViewModels only in ViewModelsModule (di-modules rule 4)
+grep -n "projects.features" features/*/*/api/build.gradle.kts                                # an api never depends on another feature's api
+grep -rn "windowSoftInputMode" apps/*/android/src/main/AndroidManifest.xml                   # adjustResize (insets rule 3)
+grep -rn "onFocusBehavior" apps/*/shared/src/iosMain                                        # OnFocusBehavior.DoNothing (insets rule 4)
+find features -maxdepth 4 -type d -name testing                                             # a feature with a fake has a testing module
 ```
 
 and list every comment of the scope for a verdict — the ones that restate a name, say who uses a
