@@ -79,7 +79,7 @@ These hold for every change; the rest is in the references.
 - **Detekt** (build-kit in apps, every kit's own build): formatting, `LayerPackageRequired`,
   `LayerPackageBoundary`, `PreviewMustBePrivate`, `ExpressionBodyNotAllowed`,
   `MultilineConstructorRequired`, `UnsafeCollectionIndexAccess`. A finding fails the build.
-- **Everything else is review**: the `conventions-review` skill checks a diff rule by rule. No other
+- **Everything else is review**: the `code-review` skill checks a diff rule by rule. No other
   rule becomes a Detekt rule — they are instructions, and this skill is where they live.
 
 ## Changing a rule

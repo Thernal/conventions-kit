@@ -43,4 +43,4 @@ internal class LoginUsernameInputStatePreviewProvider : CollectionPreviewParamet
 
 ## Checked by
 
-Detekt `PreviewMustBePrivate`; names: the `conventions` skill and `conventions-review`.
+Detekt `PreviewMustBePrivate`; names: the `conventions` skill and `code-review`.

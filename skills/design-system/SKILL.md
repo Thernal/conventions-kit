@@ -82,7 +82,7 @@ it is needed), tokens only, a `String` or a slot for text, icons by the library'
 
 **3.5 Check** before reporting: the project's build and Detekt (the Verification row of
 `.agents/workspace.md`), `grep -rn "androidx.compose.material" core/designsystem/ features/` finds nothing,
-and the `conventions-review` skill over the diff.
+and the `code-review` skill over the diff.
 
 **3.6 Report** in a few lines, by category, each with the screen or spec sheet that needed it:
 components added or extended, tokens added, icons added, feature components left in their feature,

@@ -53,4 +53,4 @@ data class PostResponseDto(val id: String? = null)
 
 - Detekt `MatchingDeclarationName` (excluded under `components/`, where the file is named after the
   composable, see [components](components.md)), `MagicNumber` (partly), ktlint formatting.
-- The rest: the `conventions` skill and `conventions-review` — no Detekt rule.
+- The rest: the `conventions` skill and `code-review` — no Detekt rule.

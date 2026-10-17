@@ -56,7 +56,7 @@ sources sit exactly under the namespace their module declares.
   the layer the same way.
 - **Every module under its namespace** — conventions-kit's `scripts/check-namespaces.py` (each
   module's packages against `kit.yml`'s `package` + the module path).
-- **Topic packages** — the `conventions` skill and `conventions-review`.
+- **Topic packages** — the `conventions` skill and `code-review`.
 
 ## Scenarios considered
 

@@ -34,5 +34,5 @@ easy to leave out of a new app.
 
 ## Checked by
 
-Review: open the keyboard on a screen with a bottom field, on both platforms. `conventions-review`
+Review: open the keyboard on a screen with a bottom field, on both platforms. `code-review`
 greps the manifests for `adjustResize` and the iOS entry points for `onFocusBehavior`.

@@ -45,5 +45,5 @@
 
 ## Checked by
 
-Review. `conventions-review` greps the module build files for `api` → `api` and `impl` → `impl` dependencies
+Review. `code-review` greps the module build files for `api` → `api` and `impl` → `impl` dependencies
 and the apps' source sets for screens.

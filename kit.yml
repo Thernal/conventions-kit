@@ -11,7 +11,7 @@ name: conventions-kit
 # Installed into the application's skills directory.
 skill:
   - skills/conventions
-  - skills/conventions-review
+  - skills/code-review
   - skills/design-system
 
 # Never copied. A change here is announced on update and read in place.
@@ -22,4 +22,4 @@ docs:
 # What the application is expected to provide.
 requires:
   - kit build-kit — its Detekt setup runs the custom rules (layers, private previews, block bodies, one constructor parameter per line, safe indexing) the conventions name
-  - agents the app's AGENTS.md says, in three lines, that its Kotlin and Compose code follows the `conventions` skill, that a review against the rules is the `conventions-review` skill, and that a rule is changed in conventions-kit, never in the app's copy
+  - agents the app's AGENTS.md says, in three lines, that its Kotlin and Compose code follows the `conventions` skill, that a review against the rules is the `code-review` skill, and that a rule is changed in conventions-kit, never in the app's copy

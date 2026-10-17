@@ -293,5 +293,5 @@ imports no Material and takes its icons as per-icon drawables, which rule 8 does
 
 ## Checked by
 
-Review (`conventions-review`). Mechanical: `grep -rn "androidx.compose.material" core/designsystem/ features/`
+Review (`code-review`). Mechanical: `grep -rn "androidx.compose.material" core/designsystem/ features/`
 finds a rule 2 breach; a Material artifact in a design-system module's build file is the same finding.
