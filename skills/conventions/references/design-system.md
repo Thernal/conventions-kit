@@ -54,6 +54,12 @@ pass — and how the design is read is the `design-system` skill.
     ([previews](previews.md)); published models carry `@Immutable` or `@Stable`; collections are
     `kotlinx.collections.immutable`.
 
+11. **One app bar.** Every screen with a top bar uses `DsAppBar` (slots) or `DsTitleAppBar` (back, title,
+    trailing actions); a feature never writes its own app bar or wraps these in a `<Feature>AppBar`. Its
+    minimum height is the design system's, so the content below does not move between screens.
+12. **The shared status colour is `DsTone`** (`Neutral`, `Info`, `Ok`, `Warn`, `Bad`), used by `DsBanner`,
+    `DsFlag`, `DsIconTile`, `DsEmptyState`; a feature's `…Banner` fills `DsBanner` with its texts.
+
 ## Why
 
 - A button's corner radius is one edit only if no feature draws its own button. The boundary is a
