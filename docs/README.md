@@ -9,6 +9,7 @@ so that the `conventions` skill ships them as they are; this page is their index
 |---|---|
 | [Package naming — namespace, layer once, nothing repeated](../skills/conventions/references/package-naming.md) | build-kit's namespace, Detekt `LayerPackageRequired`, `scripts/check-namespaces.py` |
 | [Files and names — one declaration per file, `Impl`, constants, the component / preview border](../skills/conventions/references/files-and-names.md) | Detekt `MatchingDeclarationName`, review |
+| [Modules — `features/{shared,client,store}`, dependency direction, apps hold no screen, the owning feature's rule](../skills/conventions/references/modules.md) | review, `conventions-review` greps |
 | [Presentation structure — screens, contract, models, mappers, sheets, component ViewModels](../skills/conventions/references/presentation-structure.md) | review |
 | [Components — state + composable, names, parameter order, callbacks, render contracts](../skills/conventions/references/components.md) | review |
 | [Design system — two modules, no Material, atoms and molecules, `State<T>` only for frequent values, tokens only](../skills/conventions/references/design-system.md) | review, `grep` for Material imports |
@@ -16,6 +17,7 @@ so that the `conventions` skill ships them as they are; this page is their index
 | [Data and domain — `Dto`, plain domain names, the `DataSource` family, thin repositories](../skills/conventions/references/data-and-domain.md) | review |
 | [Navigation — `presentation/navigation/`, `GraphProvider`, route keys](../skills/conventions/references/navigation.md) | nav-kit, review |
 | [DI modules — `ViewModelsModule`, `ProvidersModule`, `BindingsModule`](../skills/conventions/references/di-modules.md) | review |
+| [Insets and the keyboard — each inset once, `imePadding` then `navigationBarsPadding`, `adjustResize`, iOS `DoNothing`](../skills/conventions/references/insets.md) | review, `conventions-review` greps |
 | [Strings — `UiString`, keys, where they live](../skills/conventions/references/strings.md) | review |
 | [Compose performance — immutable collections, stability, phases](../skills/conventions/references/compose-performance.md) | stability report, review |
 | [Comments — none by default; a number, a constraint, a trap, a rule code or a "because" earns one; short](../skills/conventions/references/comments.md) | review, the comment listing of `conventions-review` |
