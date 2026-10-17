@@ -39,6 +39,9 @@ These hold for every change; the rest is in the references.
 - **No magic values.** **No comment is the default**: one stays only for a number, a constraint, a trap,
   a rule code or a "because". A KDoc on an enum entry, an intent, an effect or a state field, or one that
   says who uses the declaration, is deleted. → [comments](references/comments.md)
+- **State is read where it is drawn:** `<Screen>Content` reads none; values that change on one trigger are
+  one component; a part that never changes is never inside a component that reads state; no callback is
+  wrapped in `remember`. → [components](references/components.md), [compose-performance](references/compose-performance.md)
 - **Previews take their states from a `PreviewParameterProvider`** in `preview/`; two or more
   callbacks of a component are one `<Component>Callbacks`; a screen's mappers are grouped in
   `<Screen>StateMappers.kt` / `<Screen>CallbacksMappers.kt`. A logic's `<Screen>Action` sits in the

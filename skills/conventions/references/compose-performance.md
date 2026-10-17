@@ -15,7 +15,8 @@
 5. **Derived values**: a `derivedStateOf` field on the state, or `select` at the call site; never
    unwrap `.value` high up and pass raw values down, and never write
    `remember(state) { derivedStateOf { state.value.x } }` by hand — that is what `select` is.
-6. **A `State` is read in the smallest composable that needs it.** `Content` reads none: a value that
+6. **A `State` is read in the smallest composable that needs it,** and that composable draws nothing that
+   does not depend on it ([components](components.md) rule 4). `Content` reads none: a value that
    only the footer uses goes to a footer component through a mapper
    (`state.toSubmitFooterState()`), or the whole screen recomposes when it changes.
 

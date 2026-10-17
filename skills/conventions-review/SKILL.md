@@ -36,6 +36,7 @@ grep -rn --include='*.kt' -E "StepRoute|\w+Actions\b" features apps             
 grep -rln --include='*.kt' -E "compose.runtime.(Immutable|Stable)|collections.immutable" features/*/*/impl/src/*/kotlin/*/domain features/*/*/*/domain 2>/dev/null
                                                                                             # pure domain models (data-and-domain rule 9)
 grep -rn --include='*Content.kt' -E "derivedStateOf|state\.value" features/                  # a Content reads no state (components rule 4)
+grep -rn --include='*.kt' -E "remember(\([^)]*\))? \{ \{" features/                        # no callback wrapped in remember (components rule 6)
 grep -rln --include='*.kt' -E "class \w+(State|Callbacks)\(" features/ | grep "/model/"      # a component's state sits with its component (components rule 1)
 grep -rn --include='*.kt' -E "(val|var) \w+: (Mutable)?(State)?Flow<" features/*/*/impl/src/*/kotlin/*/*/*/*/*/*/data/repository
                                                                                             # no flow held by a repository (data-and-domain rule 3)
