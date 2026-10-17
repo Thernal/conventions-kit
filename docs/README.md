@@ -8,10 +8,10 @@ so that the `conventions` skill ships them as they are; this page is their index
 | Rule | Checked by |
 |---|---|
 | [Package naming — namespace, layer once, nothing repeated](../skills/conventions/references/package-naming.md) | build-kit's namespace, Detekt `LayerPackageRequired`, `scripts/check-namespaces.py` |
-| [Files and names — one declaration per file, `Impl`, constants, the component / preview border](../skills/conventions/references/files-and-names.md) | Detekt `MatchingDeclarationName`, review |
+| [Files and names — one declaration per file, `Impl`, constants, the component / preview border, dependency names](../skills/conventions/references/files-and-names.md) | Detekt `MatchingDeclarationName`, review |
 | [Modules — `features/{shared,client,store}`, dependency direction, apps hold no screen, the owning feature's rule](../skills/conventions/references/modules.md) | review, `conventions-review` greps |
 | [Presentation structure — screens, contract, models, mappers, sheets, component ViewModels](../skills/conventions/references/presentation-structure.md) | review |
-| [Components — state + composable, boundaries by trigger, names, parameter order, callbacks, render contracts](../skills/conventions/references/components.md) | review |
+| [Components — state + composable, boundaries by trigger, names, parameter order, one-parameter callbacks, render contracts](../skills/conventions/references/components.md) | review |
 | [Design system — two modules, no Material, atoms and molecules, `State<T>` only for frequent values, tokens only](../skills/conventions/references/design-system.md) | review, `grep` for Material imports |
 | [Previews — private, `Preview` / `Preview<State>`, `PreviewWrapper`](../skills/conventions/references/previews.md) | Detekt `PreviewMustBePrivate`, review |
 | [Data and domain — `Dto`, plain domain names, the `DataSource` family, thin repositories](../skills/conventions/references/data-and-domain.md) | review |

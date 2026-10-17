@@ -12,12 +12,12 @@
    Stub an interface at the boundary the unit talks to (a Logic's repository, `SessionManager`):
 
    ```kotlin
-   private val repository = mock<SupportRepository> {
+   private val supportRepository = mock<SupportRepository> {
        everySuspend { send(any()) } returns Result.success(Unit)
    }
    // a flow or a non-suspending call: every { conversations() } returns flowOf(Result.success(list))
-   verifySuspend { repository.send(request) }
-   verifySuspend(VerifyMode.not) { repository.send(any()) }
+   verifySuspend { supportRepository.send(request) }
+   verifySuspend(VerifyMode.not) { supportRepository.send(any()) }
    ```
 
    Imports: `dev.mokkery.mock`, `every`, `everySuspend`, `dev.mokkery.answering.returns`,

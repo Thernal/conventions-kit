@@ -21,8 +21,8 @@
    repository from the source, `<X>SourceProvidersModule` provides the `…RemoteDataSource`. A fake in the
    feature's `testing` module is a container `@ContributesTo(AppScope::class, replaces =
    [<X>SourceProvidersModule::class])`; the app pulls it in for the dev flavor only ([tests](tests.md)
-   rule 5). A shared repository is bound from the same instance: `@Provides fun shared(repository:
-   <X>Repository): <X>SharedRepository { return repository }`.
+   rule 5). A shared repository is bound from the same instance: `@Provides fun shared(<x>Repository:
+   <X>Repository): <X>SharedRepository { return <x>Repository }`.
 
 ## Why
 
