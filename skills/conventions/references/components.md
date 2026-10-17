@@ -7,10 +7,13 @@ This file is for a feature's components. A design-system component (`Ds…`, in 
 
 ## Rule
 
-1. **A component is its state and its composable, in one file named after the composable.**
-   `LoginUsernameInput.kt` holds `LoginUsernameInputState` and `LoginUsernameInput`. It takes
-   `State<LoginUsernameInputState>`; the screen maps its own state with
-   `State<LoginState>.toLoginUsernameInputState()` (`select`) in `view/<screen>/mapper/`.
+1. **A component is its state, its callbacks and its composable, in one file named after the composable.**
+   `LoginUsernameInput.kt` holds `LoginUsernameInputState`, `LoginUsernameInputCallbacks` and
+   `LoginUsernameInput`. It takes `State<LoginUsernameInputState>`; the screen maps its own state with
+   `State<LoginState>.toLoginUsernameInputState()` (`select`) in `view/<screen>/mapper/`. A component's state
+   or callbacks class is never in `model/` or `contract/`: those hold what the screen and its Logic agree on and
+   the models that travel (a list item's data, an argument). A **list row** is a component too: its state is
+   in the row's file, the list gives it `key(id) { Row(state = rememberUpdatedState(row), …) }`.
 2. **A screen's component carries the screen's name** (`LoginUsernameInput`); a component the
    module's screens share is `internal`, lives in `presentation/components/` and has no prefix.
    No `<Screen>Components` context marker: Kotlin allows context parameters on functions only, not
@@ -20,8 +23,13 @@ This file is for a feature's components. A design-system component (`Ds…`, in 
    callbacks, composable slots — a slot last, so it stays a trailing lambda.
 4. **Frequently changing inputs are `State<T>`**, read as late as possible; a static value is
    wrapped with `rememberUpdatedState(x)`. A part of a screen that reads a changing value — a
-   footer's `enabled` — is its own component with its own `State<…>`, so only it recomposes
-   ([compose-performance](compose-performance.md) rule 5).
+   footer's `enabled`, a sheet's `isVisible`, a list's rows — is its own component with its own `State<…>`,
+   so only it recomposes ([compose-performance](compose-performance.md) rules 5 and 6). **`<Screen>Content`
+   reads no state:** it arranges components and hands each one `state.to<Component>State()` and
+   `onIntent.to<Component>Callbacks()`; a `val x by remember(state) { derivedStateOf { state.value.x } }` in a
+   Content is the same mistake as unwrapping `.value`. A component made of regions that depend on state (a body
+   that shows a failure, an empty state or the list) reads its own state and takes the nested screens as a
+   trailing slot.
 5. **Callbacks are the component's own event, as a verb**: `onSubmit`, `onBack`, `onChange` — never
    the parent's use case, never `onNav…`. `on<Thing>Click` only when the component has several
    clickable things and the thing is the meaning (`onAvatarClick`).

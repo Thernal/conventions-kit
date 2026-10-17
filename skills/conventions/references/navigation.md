@@ -26,6 +26,14 @@
    `SplashSharedRoute` and moves on with `replaceAll(HomeSharedRoute)`; the root composable registers
    nothing but the providers.
 
+8. **A dashboard owns a nested host.** Its tabs are `<Feature>Route`s on a `NavigationHost` of their own, the
+   stack held by the dashboard's Logic (selecting a tab replaces it; `onBackStackChange` is a plain setter).
+   Only the tab bar and the host read the stack, each through `select`. A tab's ViewModels live with the
+   dashboard, not with the tab's entry: inside the host's entries a `TabEntryScope(outer)` gives the tab the
+   host's mount point as its `ViewModelStoreOwner` (`LocalHostViewModelStoreOwner`) and the **outer**
+   navigator, so a tab keeps its state while another is shown and opens details above the bar. The nested host
+   has a `fallback` entry for a guard rewriting its stack on sign-out.
+
 ## Checked by
 
 nav-kit (rule 4); review.

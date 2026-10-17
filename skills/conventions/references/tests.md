@@ -33,7 +33,10 @@
 5. **A feature's fake sits behind its real data layer.** The whole of `data/` runs for real (DTO, mapper,
    repository); only the `…RemoteDataSource` is replaced, by `Fake<X>RemoteDataSource` in
    `features/<group>/<name>/testing`. The fake returns DTOs, keeps the state a screen would see change
-   (what was read, what was sent) and is `@SingleIn` when it must. A container in the `testing` module,
+   (what was read, what was sent) and is `@SingleIn` when it must. It fails the way the real client does — it
+   throws the network kit's `NetworkException`, never the domain `Failure` — so the repository's mapping runs
+   too. A fake that keeps state keeps it in a `<X>RuntimeDataSource`, not in a repository
+   ([data-and-domain](data-and-domain.md) rule 3). A container in the `testing` module,
    `@ContributesTo(AppScope::class, replaces = [<X>SourceProvidersModule::class])`, binds it
    ([di-modules](di-modules.md) rule 5), and `apps/*/shared` takes the module with
    `flavorImplementation("dev", dependencyNotation = …)`: staging and production never carry a fake
