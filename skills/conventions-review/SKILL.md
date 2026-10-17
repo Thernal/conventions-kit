@@ -37,7 +37,7 @@ grep -rln --include='*.kt' -E "compose.runtime.(Immutable|Stable)|collections.im
                                                                                             # pure domain models (data-and-domain rule 9)
 grep -rn --include='*Content.kt' -E "derivedStateOf|state\.value" features/                  # a Content reads no state (components rule 4)
 grep -rln --include='*.kt' -E "class \w+(State|Callbacks)\(" features/ | grep "/model/"      # a component's state sits with its component (components rule 1)
-grep -rn --include='*.kt' -E "(val|var) \w+: (Mutable)?(State)?Flow<" features/*/*/impl/src/*/kotlin/*/*/*/*/*/*/*/data/repository
+grep -rn --include='*.kt' -E "(val|var) \w+: (Mutable)?(State)?Flow<" features/*/*/impl/src/*/kotlin/*/*/*/*/*/*/data/repository
                                                                                             # no flow held by a repository (data-and-domain rule 3)
 grep -rn --include='*.kt' -B1 -E "^(internal )?(data )?class \w+" features/*/*/impl/src/commonMain | grep -E "@(Immutable|Stable)"
                                                                                             # impl: only where the stability report needs it (compose-performance rule 2)
