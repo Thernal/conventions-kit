@@ -15,6 +15,7 @@ one pass for a team.
 | [`docs/README.md`](docs/README.md) | the rules, one file each, and how a rule is added or changed |
 | [`skills/conventions`](skills/conventions/SKILL.md) | the rules for an agent writing code in a project on the kits |
 | [`skills/code-review`](skills/code-review/SKILL.md) | reviewing a diff, an MR, a module or a kit — against them and for bugs |
+| [`skills/screen-build`](skills/screen-build/SKILL.md) | writing a screen's UI — from the design, or tidying a Content the developer assembled |
 | [`skills/design-system`](skills/design-system/SKILL.md) | building or growing an app's `core/designsystem/` — the two modes and the shared steps |
 
 ## What is here
@@ -23,6 +24,7 @@ one pass for a team.
 |---|---|
 | `skills/conventions/references/` | the rules — the one source; `docs/README.md` indexes them |
 | `skills/code-review/` | the review procedure |
+| `skills/screen-build/` | the order of work for a screen's UI |
 | `skills/design-system/` | the design-system procedure and its two modes (`references/grow.md`, `references/upfront.md`) |
 | `build-logic/detekt-rules/` | the custom Detekt rules and their tests — the master copy |
 | `build-logic/convention/` | the trimmed convention plugins every kit builds with — the master copy |
@@ -46,7 +48,7 @@ lines to the app's `AGENTS.md` (`kit.yml` → `requires`):
 - A rule is changed in conventions-kit (skill-manager `report`), never in this repository's copy.
 ```
 
-Without skill-manager: copy `skills/conventions`, `skills/code-review` and `skills/design-system`
+Without skill-manager: copy `skills/conventions`, `skills/code-review`, `skills/screen-build` and `skills/design-system`
 into the app's skills directory. The `design-system` skill writes one row, `Design system mode`, into the
 app's `.agents/workspace.md` on first use.
 

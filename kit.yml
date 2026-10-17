@@ -12,6 +12,7 @@ name: conventions-kit
 skill:
   - skills/conventions
   - skills/code-review
+  - skills/screen-build
   - skills/design-system
 
 # Never copied. A change here is announced on update and read in place.

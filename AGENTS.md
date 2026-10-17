@@ -36,6 +36,7 @@ A change here reaches every kit and every app, so it is made deliberately.
 | `docs/README.md` | the index of the rules and how one is written | a rule is added, renamed or its check changes |
 | `skills/conventions` | the rules for an agent; `references/` are the rules | a rule changes |
 | `skills/code-review` | how a review is done: the rules pass and the correctness pass | the procedure, the mechanical checks or the correctness list change |
+| `skills/screen-build` | the order of work for a screen's UI: the dynamics table, from the design or tidy | the components, state-read or design-source rules change |
 | `skills/design-system` | how an app's design system is built or grown, in its two modes | the design-system rule changes, or a step of either mode does |
 | `kit.yml` | what an app takes and must provide | a skill or a requirement changes |
 
