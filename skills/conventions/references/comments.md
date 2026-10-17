@@ -27,6 +27,20 @@
 7. **The test.** Before a comment goes in, finish the sentence "Without this, a reader would wrongly …".
    If it cannot be finished, there is no comment. A KDoc on every member of a sealed type, an enum or a
    state class fails the test by construction.
+8. **A comment that points outside the code carries a tag:** `// TAG(ref): short reason`, one line. The
+   tags are a closed set, and each needs its reference:
+
+   | Tag | Means | Ref |
+   |---|---|---|
+   | `TODO` | work not done yet | a tracker key, or the rule code that leaves it open |
+   | `FIXME` | wrong behaviour shipped knowingly | a tracker key |
+   | `REQ` | a constraint a requirement sets; the code is done | the rule code (`BR-01`) |
+   | `DESIGN` | a value the design sets that the code cannot show | the design node (`91:45`) |
+   | `WORKAROUND` | a patch for a library or platform bug, removed when it is fixed | the upstream issue or version |
+
+   A rule code or a design node never sits in a free-text comment, a tag without a reference is a finding,
+   and so is a tag outside the set. A comment that holds only a number, a trap or a "because" stays
+   untagged. Build tooling's own markers (Detekt's `// TODO: Detekt [...]`) are not comments of this rule.
 
 ## Why
 
@@ -58,5 +72,5 @@ private const val CURRENT_LANGUAGE_CODE = "AZ"
 
 ## Checked by
 
-Review. `conventions-review` lists every comment of the diff (its step 3) and gives each a verdict by
+Review. `conventions-review` greps for tags outside the set and tags without a reference (rule 8), and lists every comment of the diff (its step 3) and gives each a verdict by
 rules 2 and 7 — keep, or delete — so the rule is not left to a reader's eye.
