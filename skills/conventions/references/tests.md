@@ -32,7 +32,7 @@
    is part of done, because a name or an API that only the common tests accept fails there.
 5. **A feature's fake sits behind its real data layer.** The whole of `data/` runs for real (DTO, mapper,
    repository); only the `…RemoteDataSource` is replaced, by `Fake<X>RemoteDataSource` in
-   `features/<group>/<name>/testing`. The fake returns DTOs, keeps the state a screen would see change
+   `features/<group>/<name>/testing` (`features/<name>/testing` in a one-app product). The fake returns DTOs, keeps the state a screen would see change
    (what was read, what was sent) and is `@SingleIn` when it must. It fails the way the real client does — it
    throws the network kit's `NetworkException`, never the domain `Failure` — so the repository's mapping runs
    too. A fake that keeps state keeps it in a `<X>RuntimeDataSource`, not in a repository

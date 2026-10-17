@@ -33,17 +33,17 @@ grep -rn -E '=\s*"[^"]*\+"' gradle/libs.versions.toml                           
 grep -rn --include=*Test.kt -A1 "@Test" . | grep "fun [a-z]"                         # test names not in backticks
 grep -rn --include='*.kt' "androidx.compose.material" core/designsystem/ features/        # no Material in an app (design-system rule 2)
 grep -rn --include='*.kt' -E "StepRoute|\w+Actions\b" features apps                        # route names, Callbacks not Actions
-grep -rln --include='*.kt' -E "compose.runtime.(Immutable|Stable)|collections.immutable" features/*/*/impl/src/*/kotlin/*/domain features/*/*/*/domain 2>/dev/null
+grep -rln --include='*.kt' -E "compose.runtime.(Immutable|Stable)|collections.immutable" $(find features -type d -name domain -not -path '*/build/*')
                                                                                             # pure domain models (data-and-domain rule 9)
 grep -rn --include='*Content.kt' -E "derivedStateOf|state\.value" features/                  # a Content reads no state (components rule 4)
 grep -rn --include='*.kt' -E "remember(\([^)]*\))? \{ \{" features/                        # no callback wrapped in remember (components rule 6)
 grep -rln --include='*.kt' -E "class \w+(State|Callbacks)\(" features/ | grep "/model/"      # a component's state sits with its component (components rule 1)
-grep -rn --include='*.kt' -E "(val|var) \w+: (Mutable)?(State)?Flow<" features/*/*/impl/src/*/kotlin/*/*/*/*/*/*/data/repository
+grep -rn --include='*.kt' -E "(val|var) \w+: (Mutable)?(State)?Flow<" $(find features -type d -path '*/data/repository' -not -path '*/build/*')
                                                                                             # no flow held by a repository (data-and-domain rule 3)
-grep -rn --include='*.kt' -B1 -E "^(internal )?(data )?class \w+" features/*/*/impl/src/commonMain | grep -E "@(Immutable|Stable)"
+grep -rn --include='*.kt' -B1 -E "^(internal )?(data )?class \w+" $(find features -type d -path '*/impl/src/commonMain' -not -path '*/build/*') | grep -E "@(Immutable|Stable)"
                                                                                             # impl: only where the stability report needs it (compose-performance rule 2)
 grep -rn --include='*ProvidersModule.kt' "ViewModelKey" features                             # ViewModels only in ViewModelsModule (di-modules rule 4)
-grep -n "projects.features" features/*/*/api/build.gradle.kts                                # an api never depends on another feature's api
+grep -n "projects.features" $(find features -path '*/api/build.gradle.kts' -not -path '*/build/*')   # an api never depends on another feature's api
 grep -rn "windowSoftInputMode" apps/*/android/src/main/AndroidManifest.xml                   # adjustResize (insets rule 3)
 grep -rn "onFocusBehavior" apps/*/shared/src/iosMain                                        # OnFocusBehavior.DoNothing (insets rule 4)
 find features -maxdepth 4 -type d -name testing                                             # a feature with a fake has a testing module
