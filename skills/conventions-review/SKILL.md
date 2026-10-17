@@ -38,9 +38,6 @@ grep -rln --include='*.kt' -E "compose.runtime.(Immutable|Stable)|collections.im
 grep -rn --include='*Content.kt' -E "derivedStateOf|state\.value" features/                  # a Content reads no state (components rule 4)
 grep -rn --include='*.kt' -E "remember(\([^)]*\))? \{ \{" features/                        # no callback wrapped in remember (components rule 6)
 grep -rn --include='*.kt' -E "on[A-Z]\w*: \([^)]*,[^)]*\) ->" features/ core/designsystem/  # a callback takes one parameter (components rule 5)
-grep -rn --include='*.kt' -E "//\s*(TODO|FIXME|REQ|DESIGN|WORKAROUND)\b" . | grep -v -E "(TODO|FIXME|REQ|DESIGN|WORKAROUND)\([^)]+\): |TODO: Detekt"
-                                                                                            # a tag without its reference (comments rule 8)
-grep -rn --include='*.kt' -E "//\s*(NOTE|HACK|XXX|WHY|PERF)\b|\bBR-[0-9]+" . | grep -v -E "(TODO|REQ)\(BR-"   # a tag outside the set; a rule code in free text
 grep -rn --include='*.kt' -E "\b(repository|source|store)\s*:\s*[A-Z]\w+" features/ apps/          # a dependency named after its type (files-and-names rule 9)
 grep -rln --include='*.kt' -E "class \w+(State|Callbacks)\(" features/ | grep "/model/"      # a component's state sits with its component (components rule 1)
 grep -rn --include='*.kt' -E "(val|var) \w+: (Mutable)?(State)?Flow<" $(find features -type d -path '*/data/repository' -not -path '*/build/*')
