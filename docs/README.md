@@ -20,7 +20,7 @@ so that the `conventions` skill ships them as they are; this page is their index
 | [Insets and the keyboard — each inset once, `imePadding` then `navigationBarsPadding`, `adjustResize`, iOS `DoNothing`](../skills/conventions/references/insets.md) | review, `conventions-review` greps |
 | [Strings — `UiString`, keys, where they live](../skills/conventions/references/strings.md) | review |
 | [Compose performance — immutable collections, stability, phases](../skills/conventions/references/compose-performance.md) | stability report, review |
-| [Comments — none by default; a number, a constraint, a trap, a rule code or a "because" earns one; short; tags with a reference](../skills/conventions/references/comments.md) | review, the comment listing of `conventions-review` |
+| [Comments — none by default; a number, a constraint, a trap, a rule code or a "because" earns one; short](../skills/conventions/references/comments.md) | review, the comment listing of `conventions-review` |
 | [Tests — backtick names, Mokkery, fakes with behaviour, what is tested](../skills/conventions/references/tests.md) | review |
 | [Documentation — a README per `api` module](../skills/conventions/references/documentation.md) | the kit's done-list, review |
 | [Formatting — editorconfig and the custom Detekt rules](../skills/conventions/references/formatting.md) | ktlint, Detekt |

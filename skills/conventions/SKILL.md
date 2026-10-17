@@ -40,8 +40,7 @@ These hold for every change; the rest is in the references.
   before the component, the preview's between component and preview.
 - **No magic values.** **No comment is the default**: one stays only for a number, a constraint, a trap,
   a rule code or a "because". A KDoc on an enum entry, an intent, an effect or a state field, or one that
-  says who uses the declaration, is deleted. A comment pointing outside the code is tagged,
-  `// TODO|FIXME|REQ|DESIGN|WORKAROUND(ref): reason`. → [comments](references/comments.md)
+  says who uses the declaration, is deleted. → [comments](references/comments.md)
 - **State is read where it is drawn:** `<Screen>Content` reads none; values that change on one trigger are
   one component; a part that never changes is never inside a component that reads state; no callback is
   wrapped in `remember`. → [components](references/components.md), [compose-performance](references/compose-performance.md)
