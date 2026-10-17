@@ -47,4 +47,4 @@
 
 ## Checked by
 
-The `conventions` skill and `conventions-review`.
+The `conventions` skill and `code-review`.

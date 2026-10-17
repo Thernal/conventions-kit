@@ -14,7 +14,7 @@ one pass for a team.
 |---|---|
 | [`docs/README.md`](docs/README.md) | the rules, one file each, and how a rule is added or changed |
 | [`skills/conventions`](skills/conventions/SKILL.md) | the rules for an agent writing code in a project on the kits |
-| [`skills/conventions-review`](skills/conventions-review/SKILL.md) | reviewing a diff, a module or a kit against them |
+| [`skills/code-review`](skills/code-review/SKILL.md) | reviewing a diff, an MR, a module or a kit — against them and for bugs |
 | [`skills/design-system`](skills/design-system/SKILL.md) | building or growing an app's `core/designsystem/` — the two modes and the shared steps |
 
 ## What is here
@@ -22,7 +22,7 @@ one pass for a team.
 | Path | Holds |
 |---|---|
 | `skills/conventions/references/` | the rules — the one source; `docs/README.md` indexes them |
-| `skills/conventions-review/` | the review procedure |
+| `skills/code-review/` | the review procedure |
 | `skills/design-system/` | the design-system procedure and its two modes (`references/grow.md`, `references/upfront.md`) |
 | `build-logic/detekt-rules/` | the custom Detekt rules and their tests — the master copy |
 | `build-logic/convention/` | the trimmed convention plugins every kit builds with — the master copy |
@@ -42,11 +42,11 @@ lines to the app's `AGENTS.md` (`kit.yml` → `requires`):
 
 ```markdown
 - Kotlin and Compose code here follows the `conventions` skill (conventions-kit); load it before writing code.
-- A review against those rules is the `conventions-review` skill.
+- A review — against those rules and for bugs — is the `code-review` skill.
 - A rule is changed in conventions-kit (skill-manager `report`), never in this repository's copy.
 ```
 
-Without skill-manager: copy `skills/conventions`, `skills/conventions-review` and `skills/design-system`
+Without skill-manager: copy `skills/conventions`, `skills/code-review` and `skills/design-system`
 into the app's skills directory. The `design-system` skill writes one row, `Design system mode`, into the
 app's `.agents/workspace.md` on first use.
 

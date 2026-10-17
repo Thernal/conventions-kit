@@ -58,5 +58,5 @@ private const val CURRENT_LANGUAGE_CODE = "AZ"
 
 ## Checked by
 
-Review. `conventions-review` lists every comment of the diff (its step 3) and gives each a verdict by
+Review. `code-review` lists every comment of the diff (its step 3) and gives each a verdict by
 rules 2 and 7 — keep, or delete — so the rule is not left to a reader's eye.
