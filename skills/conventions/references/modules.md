@@ -18,11 +18,13 @@
    `testing` depends on its feature's `impl` and `wiring`, never the reverse; an app takes it only for the
    flavors that carry fakes.
 4. **An app holds no screen.** `apps/<app>/shared` has the Metro graph, the root composable and the
-   ViewModel that owns the root: the back stack and what the data layer feeds every screen (theme, language),
-   read through the shared preferences repository. The root composable is one **layer** per provider
-   (`LanguageLayer`, `ThemeLayer`, `OverlayLayer`, `NavigationLayer`), each reading a single field of the root
-   state, so one change recomposes one layer. A layer provides something; none gates the content on a loading
-   flag — a flow that never emitted would leave the app blank. The app's tabs are its own `dashboard` feature
+   ViewModel that owns the root: the back stack and what the data layer feeds every screen (a theme or a
+   language the user chose), read through the shared preferences repository. The root composable nests one
+   **provider** per thing it gives every screen — for example `LanguageProvider`, `ThemeProvider`,
+   `OverlayProvider`, `NavigationProvider`. These are examples, not a required set: an app has the providers it
+   needs and adds one when it has something to provide. Each reads a single field of the root state, so one
+   change recomposes one provider. A provider provides; none gates the content on a loading flag — a flow
+   that never emitted would leave the app blank. The app's tabs are its own `dashboard` feature
    (`features/client/dashboard`, `features/store/dashboard`; `features/dashboard` in a one-app product),
    registered like any other feature's graph.
 5. **A rule that spans features belongs to the feature that owns the subject.** Where a signed-out user
