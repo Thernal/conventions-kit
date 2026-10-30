@@ -15,6 +15,7 @@ so that the `conventions` skill ships them as they are; this page is their index
 | [Design system — two modules, no Material, atoms and molecules, `State<T>` only for frequent values, tokens only](../skills/conventions/references/design-system.md) | review, `grep` for Material imports |
 | [Previews — private, `Preview` / `Preview<State>`, `PreviewWrapper`](../skills/conventions/references/previews.md) | Detekt `PreviewMustBePrivate`, review |
 | [Data and domain — `Dto`, plain domain names, the `DataSource` family, thin repositories](../skills/conventions/references/data-and-domain.md) | review |
+| [Kotlin features — must-use results, `val _ =`, backing fields only inside a module, `sealedType()` not yet](../skills/conventions/references/kotlin-features.md) | the compiler (`-Xreturn-value-checker=check`), review, `code-review` greps |
 | [Navigation — `presentation/navigation/`, `GraphProvider`, route keys](../skills/conventions/references/navigation.md) | nav-kit, review |
 | [DI modules — `ViewModelsModule`, `ProvidersModule`, `BindingsModule`](../skills/conventions/references/di-modules.md) | review |
 | [Insets and the keyboard — each inset once, `imePadding` then `navigationBarsPadding`, `adjustResize`, iOS `DoNothing`](../skills/conventions/references/insets.md) | review, `code-review` greps |

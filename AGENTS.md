@@ -39,6 +39,7 @@ A change here reaches every kit and every app, so it is made deliberately.
 | `skills/screen-build` | the order of work for a screen's UI: the dynamics table, from the design or tidy | the components, state-read or design-source rules change |
 | `skills/design-system` | how an app's design system is built or grown, in its two modes | the design-system rule changes, or a step of either mode does |
 | `kit.yml` | what an app takes and must provide | a skill or a requirement changes |
+| `evals/<skill>/` | one to three cases per skill, each failing without the skill and passing with it (knowledge `docs/SKILLS.md`) | the skill changes; a run on a new model appends a row |
 
 The skills' frontmatter has to load in Claude Code and in Codex alike: a `description` of at most 1024
 characters (600–900 in practice), valid YAML, only `name` and `description`.

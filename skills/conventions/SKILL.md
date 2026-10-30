@@ -60,6 +60,7 @@ These hold for every change; the rest is in the references.
 | a new feature or app, a dependency between modules, where a rule that spans features lives | [modules](references/modules.md) |
 | a screen with a text field, a bottom bar, a sheet over a keyboard; an app's activity or iOS entry point | [insets](references/insets.md) |
 | a screen: View, Content, ViewModel, contract, models, mappers | [presentation-structure](references/presentation-structure.md) |
+| a function returning `Result`, a sealed outcome or a `Flow`; a dropped value; a `MutableStateFlow` exposed read-only | [kotlin-features](references/kotlin-features.md) |
 | a component (state + composable), its parameters and callbacks; a render contract across features | [components](references/components.md) |
 | a design-system component, token or modifier (`core/designsystem/`, `Ds…`) | [design-system](references/design-system.md) |
 | previews | [previews](references/previews.md) |
