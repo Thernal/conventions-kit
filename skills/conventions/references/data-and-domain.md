@@ -38,8 +38,9 @@
 9. **Domain models are pure Kotlin.** No `@Immutable` or `@Stable`, no Compose, no
    `kotlinx.collections.immutable`, no default values, no display logic (initials, formatted dates and
    ratings, concatenated names), no design-system or platform type (a domain `AppTheme`, never the
-   design system's `ThemeMode`). The presentation layer maps them to its own models, in the Logic,
-   with mappers in `view/<screen>/mapper/`; a component never takes a domain type.
+   design system's `ThemeMode`). The presentation layer maps them to its own models or straight to
+   component states, in the Logic, with mappers in `view/<screen>/mapper/`; a component never takes a domain
+   type, nor a presentation model ([components](components.md) rule 10).
 10. **`data/` has the same four folders in every feature:** `model/` (`…Dto`), `mapper/`, `source/`,
     `repository/`. A feature with no network has the folders it needs, not a flat `data/`. Fake data is
     never an object in `data/` read by a Logic or by previews: it is a fake of the data source, behind the

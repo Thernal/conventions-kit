@@ -11,9 +11,9 @@ This file is for a feature's components. A design-system component (`Ds…`, in 
    `LoginUsernameInput.kt` holds `LoginUsernameInputState`, `LoginUsernameInputCallbacks` and
    `LoginUsernameInput`. It takes `State<LoginUsernameInputState>`; the screen maps its own state with
    `State<LoginState>.toLoginUsernameInputState()` (`select`) in `view/<screen>/mapper/`. A component's state
-   or callbacks class is never in `model/` or `contract/`: those hold what the screen and its Logic agree on and
-   the models that travel (a list item's data, an argument). A **list row** is a component too: its state is
-   in the row's file, the list gives it `key(id) { Row(state = rememberUpdatedState(row), …) }`.
+   or callbacks class is never in `model/` or `contract/`, and it holds its own fields, never a model (rule 10).
+   A **list row** is a component too: its state is in the row's file, the list gives it
+   `key(id) { Row(state = rememberUpdatedState(row), …) }`.
 2. **A screen's component carries the screen's name** (`LoginUsernameInput`); a component the
    module's screens share is `internal`, lives in `presentation/components/` and has no prefix.
    No `<Screen>Components` context marker: Kotlin allows context parameters on functions only, not
@@ -53,6 +53,15 @@ This file is for a feature's components. A design-system component (`Ds…`, in 
    composable. The facade is `(params: XParams, modifier: Modifier = Modifier[, content])`, every
    optional input on `XParams`.
 9. **Reuse before adding**: a component enters the design system only when it is product-generic.
+10. **A component's state holds its own fields, never a model.** Its fields are what it draws, flat: strings,
+    `UiString`s, numbers, `Instant`s, enums, other component states and immutable lists of them. It never wraps
+    a `model/` class — `ChatMessageRowState(message: ChatMessage)` is the mistake; the Logic or a mapper maps
+    the model to the component's state. The screen's `State` may hold component states as they are
+    (`messages: PagingState<ChatMessageRowState>`, `composer: ChatComposerState`): they are immutable, and
+    `state.to<Component>State()` is then a plain `select { screen -> screen.composer }`. A `model/` class exists
+    only for data that more than one state holds or that the Logic works with, and is mapped to a component's
+    state before a component sees it ([presentation-structure](presentation-structure.md) rule 3). An enum used
+    as a value (`selected: BodyShape?`) is a field, not a wrapped model.
 
 ## Why
 
@@ -64,6 +73,15 @@ This file is for a feature's components. A design-system component (`Ds…`, in 
   button depends on every argument comparing equal, which a reader of the code cannot see.
 - `remember { { … } }` around a lambda repeats what the compiler already does under strong skipping (the
   default since Kotlin 2.0.20) and adds a key a reader has to check.
+- A component whose state wraps the screen's model depends on the layer above it: it cannot be previewed or
+  reused without that model, and the wrapper adds a class and a mapping step without adding a field. Flat
+  fields keep the component drawable from a literal, and let the screen's state hold it as it is.
+
+## Scenarios considered
+
+- **A list item's data as a `model/` class, wrapped by the row's state** (the rule until 2026-11-09): the row
+  then reads `row.message.title`, depends on the screen's model, and every list of rows needs the model and
+  the wrapper both. Lost to flat row state, which the screen's state holds directly.
 
 ## Example
 

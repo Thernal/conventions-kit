@@ -31,7 +31,7 @@ These hold for every change; the rest is in the references.
 - **Data:** `data/{model,mapper,source,repository}` in every feature; a remote source is an interface +
   `…Impl`; a repository another feature needs is `<Feature>SharedRepository` in the `api`; **domain
   models are pure** (no Compose, no immutable collections, no defaults, no display logic) and the
-  presentation maps them to its own models. → [data-and-domain](references/data-and-domain.md)
+  presentation maps them to its own models or to component states. → [data-and-domain](references/data-and-domain.md)
 - **Fakes** sit behind the real data layer: `Fake<X>RemoteDataSource` in the feature's `testing` module,
   dev flavor only. Stubs are Mokkery. → [tests](references/tests.md)
 - **Keyboard:** each inset once; `imePadding()` then `navigationBarsPadding()`; Android `adjustResize`;
@@ -43,7 +43,9 @@ These hold for every change; the rest is in the references.
   says who uses the declaration, is deleted. → [comments](references/comments.md)
 - **State is read where it is drawn:** `<Screen>Content` reads none; values that change on one trigger are
   one component; a part that never changes is never inside a component that reads state; no callback is
-  wrapped in `remember`. → [components](references/components.md), [compose-performance](references/compose-performance.md)
+  wrapped in `remember`. **A component's state holds its own fields, never a model**; a screen's State may hold
+  component states, and `model/` is only for data several states hold or the Logic uses.
+  → [components](references/components.md), [compose-performance](references/compose-performance.md)
 - **Previews take their states from a `PreviewParameterProvider`** in `preview/`; two or more
   callbacks of a component are one `<Component>Callbacks`; a screen's mappers are grouped in
   `<Screen>StateMappers.kt` / `<Screen>CallbacksMappers.kt`. A logic's `<Screen>Action` sits in the
