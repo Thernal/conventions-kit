@@ -9,7 +9,7 @@ A feature's `presentation` package (in `impl`; `api` holds only what it publishe
 ```
 presentation/
   navigation/              routes, <Feature>GraphProvider, navigation sheets   → [navigation](navigation.md)
-  model/                   feature-level UI models, navigation argument classes
+  model/                   data several screens' states hold or their Logic uses, navigation argument classes
   mapper/                  mappers several screens use
   components/              internal components shared by the module's screens (no screen prefix)
   preview/                 PreviewParameterProviders shared in the module, if any
@@ -19,9 +19,9 @@ presentation/
     <Screen>ViewModel.kt
     contract/              <Screen>State, <Screen>Intent, <Screen>Action (with an ActionLogic),
                            <Screen>Effect (only if needed), <Screen>Callbacks
-    model/                 screen-level UI models
+    model/                 data more than one state holds or the Logic uses; never a component's state
     mapper/                <Screen>StateMappers.kt, <Screen>CallbacksMappers.kt;
-                           domain → UI model for this screen
+                           domain → UI model or component state for this screen
     components/<Name>.kt   a component: its state, its callbacks, its composable → [components](components.md)
     components/<name>/     a large one: <Name>.kt + components/
     form/                  the screen's input validators (`<Name>Validator`), if any
@@ -40,8 +40,10 @@ holds belongs to one of these places or to the screen's View.
    `Navigation(process: Navigator.() -> Unit)` and `Message(text: UiString)`, plus a case of its own when
    one is needed. Every screen has its own effect type, even when several screens of a feature need the
    same cases, and its View handles each case inline; no shared "effect handler" file.
-3. **UI models are not contract.** Display models and navigation argument classes go to `model/` —
-   the screen's, or the feature's when several screens use them.
+3. **Models are neither contract nor a component's state.** `model/` holds data that more than one state holds
+   or that the Logic works with, and navigation argument classes — the screen's, or the feature's when several
+   screens use them. What one component draws is that component's state, in its file, and the screen's State
+   may hold it directly ([components](components.md) rule 10).
 4. **`<Screen>Content` never sees the ViewModel**: `(state, onIntent, callbacks)`; the parameter is
    `onIntent`.
 5. **One ViewModel per screen** holds everything on it. A component gets its own ViewModel only when
@@ -59,8 +61,9 @@ holds belongs to one of these places or to the screen's View.
    App-level overlays (overlay-kit) are called through their api.
 8. **No preview data shared between screens.** `PreviewParameterProvider`s, when written, live in
    `preview/` of the module or of the screen.
-9. **Presentation models, not domain types.** A state and a component hold the screen's own models
-   (`ProfileInfo`, `ChatMessage`), mapped from the domain in the Logic; display text is made here
+9. **Presentation types, not domain types.** A state holds component states and the screen's own models
+   (`ProfileInfo`, `ChatMessage`), mapped from the domain in the Logic; a component holds only its own state,
+   never a model ([components](components.md) rule 10); display text is made here
    ([data-and-domain](data-and-domain.md) rule 9).
 10. **A screen with nothing that changes state** (an about page, a static FAQ) is a `View` and a `Content`,
     without a ViewModel, Logic or contract.
@@ -72,7 +75,7 @@ holds belongs to one of these places or to the screen's View.
 - Each folder answers one question — where is this screen's contract, its models, its parts — so
   nothing is placed by taste.
 - Contract and models apart: a contract is what the screen and its ViewModel agree on; a model is
-  data that also travels (an argument, a list item) and outlives one screen's contract.
+  data that also travels (an argument, data several states hold) and outlives one screen's contract.
 - Callbacks in one class keep `Content`'s signature the same on every screen and its previews short.
 - An action is what the logic does about an intent, so it sits with the types its `ActionLogic` names;
   a callback is what the UI asks of its parent. One word each, so `LoginAction` and `LoginActions`

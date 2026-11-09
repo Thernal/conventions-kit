@@ -41,7 +41,8 @@ Before any code, one row per element of the screen:
   question for the developer, not a guess.
 - **Component boundaries come from the Trigger column:** rows with the same trigger are one component; a
   static row is never inside a component that reads state; `<Screen>Content` reads nothing. The state's shape
-  comes from the Source column (arch-kit picks the level).
+  comes from the Source column (arch-kit picks the level); a component's state is its own flat fields, never a
+  wrapped model, and the screen's State may hold it as it is (conventions, components rule 10).
 
 Show the table in the reply (or the task's `plan.md` for a large screen) before writing the code.
 
